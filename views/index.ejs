@@ -8,26 +8,34 @@
   </head>
   <body>
     <form action="/" id="form" class="form" method="POST">
-      <label for="anime-genres">Select an Anime Genre</label><br />
-      <select name="type" class="form-select">
-        <option value="action">Action</option>
-        <option value="adventure">Adventure</option>
-        <option value="avant garde">Avant Garde</option>
-        <option value="award winning">Award Winning</option>
-        <option value="comedy">Comedy</option>
-        <option value="drama">Drama</option>
-        <option value="fantasy">Fantasy</option>
-        <option value="gourmet">Gorumet</option>
-        <option value="horror">Horror</option>
-        <option value="mystery">Mystery</option>
-        <option value="romance">Romance</option>
-        <option value="sci-fi">Sci-Fi</option>
-        <option value="slice-of-life">Slice of Life</option>
-        <option value="sports">Sports</option>
-        <option value="supernatural">Supernatural</option>
-        <option value="suspense">Suspense</option>
-      </select>
-      <button type="submit" class="form-submit">Go</button>
-    </form>
+        <div>
+            <label for="anime-genres">Select an Anime Genre</label><br />
+            <select name="anime-genres" id="genres" multiple>
+              <option value=1>Action</option>
+              <option value=2>Adventure</option>
+              <option value=5>Avant Garde</option>
+              <option value=46>Award Winning</option>
+              <option value=4>Comedy</option>
+              <option value=8>Drama</option>
+              <option value=10>Fantasy</option>
+              <option value=47>Gorumet</option>
+              <option value=14>Horror</option>
+              <option value=7>Mystery</option>
+              <option value=22>Romance</option>
+              <option value=24>Sci-Fi</option>
+              <option value=36>Slice of Life</option>
+              <option value=38>Sports</option>
+              <option value=37>Supernatural</option>
+              <option value=41>Suspense</option>
+            </select>
+
+          </form>
+        </div>
+      
+
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
+    <script>
+      new MultiSelectTag("genres");
+    </script>
   </body>
 </html>
