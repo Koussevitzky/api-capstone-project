@@ -16,6 +16,11 @@ app.get("/", async (req, res) => {
 app.post("/results", async (req, res) => {
   try {
     let userGenres = req.body.genres;
+
+    if (userGenres.length > 1) {
+      userGenres = userGenres.join(", ");
+    }
+
     const response = await axios.get(API_URL + "anime", {
       params: {
         sfw: true,
@@ -23,18 +28,18 @@ app.post("/results", async (req, res) => {
         min_score: 8.0,
         genres: userGenres,
         limit: 5,
+        order_by: "score",
+        sort: "desc",
       },
     });
     const result = response.data;
-
-    console.log(result.data[0].title);
 
     res.render("index.ejs", {
       shows: result.data,
     });
   } catch (error) {
     console.error("failed to make request:", error.message);
-    console.log(error.response);
+    // console.log(error.response);
   }
 });
 
