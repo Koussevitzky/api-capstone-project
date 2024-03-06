@@ -7,10 +7,10 @@
     <link rel="stylesheet" type="text/css" href="styles/main.css"
   </head>
   <body>
-    <form action="/" id="form" class="form" method="POST">
+    <form action="/results" id="form" class="form" method="POST">
         <div>
-            <label for="anime-genres">Select an Anime Genre</label><br />
-            <select name="anime-genres" id="genres" multiple>
+            <label for="genres">Select an Anime Genre</label><br />
+            <select name="genres" id="genres" multiple>
               <option value=1>Action</option>
               <option value=2>Adventure</option>
               <option value=5>Avant Garde</option>
@@ -28,11 +28,20 @@
               <option value=37>Supernatural</option>
               <option value=41>Suspense</option>
             </select>
-
+            <button type="submit" class="form-submit">Search</button>
           </form>
         </div>
-      
-
+        <div>
+            <% if (locals.shows) { %>
+                <% shows.forEach(showInfo => { %>
+                    <h2><%= `Title: ${showInfo.title}` %></h2>
+                    <img src=<%= showInfo.images.jpg.image_url %>></img>
+                    <h3><%= `Score: ${showInfo.score} / 10` %></h3>
+                    <h3><%= `Show Rank: #${showInfo.rank}` %></h3>
+                    <br>
+                    <% }); %>
+                <% } %>
+        </div>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
     <script>
       new MultiSelectTag("genres");
