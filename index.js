@@ -10,14 +10,33 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
-  res.render("index.ejs");
+  try {
+    const response = await axios.get(API_URL + "anime", {
+      params: {
+        sfw: true,
+        type: "tv",
+        min_score: 9.0,
+        limit: 10,
+        order_by: "score",
+        sort: "desc",
+      },
+    });
+
+    const result = response.data;
+
+    res.render("index.ejs", {
+      shows: result.data,
+    });
+  } catch (error) {
+    console.error("failed to make request:", error.message);
+    // console.log(error.response);
+  }
 });
 
 app.post("/results", async (req, res) => {
   try {
     let userGenres = req.body.genres;
-
-    if (userGenres.length > 1) {
+    if (userGenres != null && userGenres.length > 1) {
       userGenres = userGenres.join(", ");
     }
 
@@ -32,6 +51,7 @@ app.post("/results", async (req, res) => {
         sort: "desc",
       },
     });
+
     const result = response.data;
 
     res.render("index.ejs", {
